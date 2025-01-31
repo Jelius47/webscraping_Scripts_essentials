@@ -59,29 +59,30 @@ date_box = browser.find_element(By.ID,value="datepicker2").click()
 time.sleep(3)
 current_date # Remember we created this earlier
 
-next_date_day = str(current_date + timedelta(days=1)).day
+next_date_day = (current_date + timedelta(days=1)).day
+str(next_date_day)
 
 current_month = str(datetime.now().month)
 
 current_year_ = str(current_date.year)
 
-next_month = (current_month % 12) + 1 # AAAh this is a genius trick 
-
+next_month = (datetime.now().month % 12) + 1 # AAAh this is a genius trick 
+next_month.__str__()
 # SINCE BASED ON THE DROPDOWN THE VALUE ARE MOTH/YEAR IN THE HTML STRUCTURE
 
 next_month_year = f"{next_month}/{current_year_}"
 
 # Finding the dropdown 
 
-month_dropdown = browser.find_element(By.CSS_SELECTOR,value="select[title='change the month']")
+month_dropdown = browser.find_element(By.CSS_SELECTOR,value="select[title='Change the month']")
 
 select = Select(month_dropdown)
 
 select.select_by_value(str(next_month_year))
 
 # Finding years dropdown
-years_dropdown = browser.find_element(By.CSS_SELECTOR,value="select[title='change the year']")
+years_dropdown = browser.find_element(By.CSS_SELECTOR,value="select[title='Change the year']")
 select = Select(years_dropdown)
-select.select_by_visible_text("2002")
+select.select_by_visible_text("2024")
 
-browser.find_element(By.LINK_TEXT,next_day).click()
+browser.find_element(By.LINK_TEXT,value=next_day).click()
